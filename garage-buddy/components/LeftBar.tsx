@@ -12,11 +12,9 @@ export default function LeftBar() {
             <>
                 <img className="h-12 w-12 rounded-full" src={session.user?.image!} alt="Profile" />
                 <p className="my-2">{session.user?.email}</p>
-                <button onClick={() => signOut()} className="bg-sky-500 rounded-md px-2 py-1 my-2">Logout</button>
+                  <button onClick={() => signOut()} className="bg-sky-500 rounded-md px-2 py-1 my-2 hover:bg-sky-700">Logout</button>
             </>
         )}
-        
-
     </div>
   )
 }
