@@ -5,7 +5,7 @@ export default function GaragePage() {
     return (
         <div className="flex">
             <LeftBar />
-            <div>
+            <div className="flex-1">
                 <NewCar />
                 <p className="text-white px-4 text-5xl">Your Vehicles: </p>   
             </div>

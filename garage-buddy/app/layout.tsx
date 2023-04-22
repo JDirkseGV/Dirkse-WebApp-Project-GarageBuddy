@@ -27,16 +27,18 @@ export default async function RootLayout({
             <Login />
           ): (
             <div>
-              <div className="flex justify-between bg-zinc-800 py-4">
-                <div className="text-white px-4">
-                  <a href="/" className="hover:bg-zinc-900 px-4 py-4 rounded-md">Home</a>
-                  <a href="/mygarage" className="hover:bg-zinc-900 px-4 py-4 rounded-md">My Garage</a>
+              <div className="flex justify-between bg-zinc-800 py-4 items-center flex-wrap">
+                
+                <div>
+                  <a href="/" className="hover:bg-zinc-900 px-4 py-4 mx-2 rounded-md text-white text-center">Home</a>
+                  <a href="/mygarage" className="hover:bg-zinc-900 px-4 py-4 mx-2 rounded-md text-white text-center">My Garage</a> 
                 </div>
-                <div className='px-4'>
-                  <div></div>
-                  <a href="/login" className="bg-sky-500 mx-2 px-4 rounded-md py-2 text-sm hover:bg-sky-700">Log In</a>
-                  <a href="/signup" className="bg-sky-500 mx-2 px-4 rounded-md py-2 text-sm hover:bg-sky-700">Sign Up</a>
+                <div>
+                  <a href="/login" className="bg-sky-500 px-4 py-2 mx-2 rounded-md text-sm hover:bg-sky-700 text-center">Log In</a>
+                  <a href="/signup" className="bg-sky-500 px-4 py-2 mx-2 rounded-md text-sm hover:bg-sky-700 text-center">Sign Up</a> 
                 </div>
+                
+               
               </div>  
               
               <div>{children}</div>
