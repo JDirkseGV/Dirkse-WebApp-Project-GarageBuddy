@@ -2,27 +2,59 @@
 'use client'
 
 import { db } from "@/firebase";
-import { doc, updateDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, {useState} from "react"
+import { useCollection } from "react-firebase-hooks/firestore";
+
+type Properties = {
+    params:{
+        id: string;
+    }
+
+}
 
 
 
-export default function Car() {
-    console.log("id: "+ [id])
-
+export default function Car({params: {id}}: Properties) {
+    console.log("id: "+ id)
+    const { data: session } = useSession();
+    let dataLoaded = false
     const [carData, setCarData] = useState({
-        year: year,
-        make: make,
-        model: model
+    
     })
+    const ReadCarFromFirestore = async () => { //TODO: do this with useEffect
+        try{
+            const carDoc = doc(db, 'users', session?.user?.email!, 'cars', id)
+            const result = await getDoc(carDoc).then((doc) => {
+                console.log(doc.data())
+                setCarData(doc) 
+                dataLoaded = true
+
+            })
+            return(result)
+        }
+        catch{
+            console.log("doc fetch error")
+        }
+        
+    }
+
+    
+    if(!dataLoaded){
+        //ReadCarFromFirestore()
+    }
+    
+    
+
 
     const router = useRouter()
 
     const updateCars = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try{
-            const carReference = doc(db, "cars", id)
+            const carReference = doc(db, "users/cars", id)
             await updateDoc(carReference, {
                 year: carData.year,
                 make: carData.make,
