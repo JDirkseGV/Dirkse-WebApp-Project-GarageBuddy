@@ -6,16 +6,10 @@ import { doc, updateDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import React, {useState} from "react"
 
-type Properties = {
-    id: string;
-    year: string;
-    make: string;
-    model: string;
-}
 
-export default function Car({id, year, make, model }: Properties) {
-    console.log("year: "+ year)
-    console.log("id: "+ id)
+
+export default function Car() {
+    console.log("id: "+ [id])
 
     const [carData, setCarData] = useState({
         year: year,

@@ -1,5 +1,9 @@
 import Link from "next/link";
 import Image from "next/image"
+import { usePathname, useRouter } from "next/navigation";
+import { db } from "@/firebase";
+import { collection, doc, getDoc, query } from "firebase/firestore";
+import { useSession } from "next-auth/react";
 
 type Properties = {
     id: string;
@@ -9,8 +13,16 @@ type Properties = {
 }
 
 export default function VehicleCard({id, year, make, model}: Properties) {
-    console.log("year: " + year)
+
+    const {data:session} = useSession()
+    console.log("id " + id)
+    console.log("userid " + make)
+
+
+    
+
   return (
+    <>
         <Link className="m-4" href={`/mygarage/${id}`} >
           
           <Image className="rounded"
@@ -24,10 +36,10 @@ export default function VehicleCard({id, year, make, model}: Properties) {
                 <p>{make}</p>
                 <p>{model}</p>
             
-                <button>Delete</button>
+                <button className="border rounded">Delete</button>
             </div>   
-            
-
         </Link>
+    </>
+        
   )
 }
