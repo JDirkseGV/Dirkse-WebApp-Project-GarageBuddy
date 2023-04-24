@@ -12,9 +12,9 @@ export default function HomePage() {
   return (
     <div className="flex flex-col h-screen w-screen">
       <div id="modelsArea" className="flex flex-wrap">
-        <AccelerationCard></AccelerationCard>
-        <HorsepowerCard></HorsepowerCard>
-        <WeightCard></WeightCard>
+        <AccelerationCard path={"acceleration"}></AccelerationCard>
+        <HorsepowerCard path={"horsepower"}></HorsepowerCard>
+        <WeightCard path={"weight"}></WeightCard>
       </div>
       <div id="carContent" className="flex border">
         <p className="text-white px-4">Cool Car Homepage with link card to "your garage"</p>

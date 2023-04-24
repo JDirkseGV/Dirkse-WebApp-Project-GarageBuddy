@@ -1,6 +1,9 @@
 
 'use client'
 
+import AccelerationCard from "@/components/AccelerationCard";
+import HorsepowerCard from "@/components/HorsepowerCard";
+import WeightCard from "@/components/WeightCard";
 import { db } from "@/firebase";
 import { collection, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
 import { useSession } from "next-auth/react";
@@ -75,10 +78,14 @@ export default function Car({params: {id}}: Properties) {
             <input type="text" id="model" value={carData.model} onChange={(e) => setCarData({ ...carData, model: e.target.value })} />
             <button type="submit">Update Car Info</button>
         </form>
-        <div className="p-4">
-            <Link className="m-4" href={`/mygarage/acceleration/${id}`} >Acceleration Prediction</Link>
+        <div className="flex flex-row flex-wrap p-4">
+            <AccelerationCard path={`acceleration/${id}`}></AccelerationCard>
+            <HorsepowerCard path={`horsepower/${id}`}></HorsepowerCard>
+            <WeightCard path={`weight/${id}`}></WeightCard>
+
+            {/* <Link className="m-4" href={`/mygarage/acceleration/${id}`} >Acceleration Prediction</Link>
             <Link className="m-4" href={`/mygarage/weight/${id}`} >Weight Prediction</Link>
-            <Link className="m-4" href={`/mygarage/horsepower/${id}`} >Horsepower Prediction</Link>
+            <Link className="m-4" href={`/mygarage/horsepower/${id}`} >Horsepower Prediction</Link> */}
         </div>
 
 

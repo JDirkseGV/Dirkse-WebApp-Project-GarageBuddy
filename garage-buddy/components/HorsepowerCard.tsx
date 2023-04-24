@@ -1,9 +1,13 @@
 import Image from "next/image"
 import Link from "next/link"
 
-export default function HorsepowerCard() {
+type Properties = {
+    path: string;
+}
+
+export default function HorsepowerCard({ path }: Properties) {
     return (
-        <Link className="m-4 border-zinc-800 border-4 rounded w-96 flex flex-col items-center justify-between bg-zinc-400 hover:bg-zinc-100 hover:border-zinc-500" href={`/mygarage/horsepower`} >
+        <Link className="m-4 border-zinc-800 border-4 rounded w-96 flex flex-col items-center justify-between bg-zinc-400 hover:bg-zinc-100 hover:border-zinc-500" href={`/mygarage/${path}`} >
             <Image className="rounded"
                 src="/../public/dynoGraph.jpg"
                 alt="Car Image"
