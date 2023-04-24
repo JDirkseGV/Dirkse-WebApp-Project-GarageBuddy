@@ -7,11 +7,21 @@ import { db } from "@/firebase";
 import {useCollection} from "react-firebase-hooks/firestore"
 import { collection } from "firebase/firestore";
 import { useSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { redirect, useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function GaragePage() {
 
+    //const serverSession = await getServerSession(authOptions)
+
     const {data:session} = useSession();
-    const [cars, loading, error] = useCollection(
+    const router = useRouter()
+
+
+
+    const [cars, loadingCollection, error] = useCollection(
         session && collection(db,"users", session.user?.email!, "cars")
     )
     console.log(cars)
@@ -31,5 +41,6 @@ export default function GaragePage() {
             </div>
             
         </div>
-    )
+    )   
+    
 }

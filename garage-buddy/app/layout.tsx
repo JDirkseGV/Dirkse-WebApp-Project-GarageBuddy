@@ -3,6 +3,7 @@ import { SessionProvider } from "../components/SessionProvider"
 import { authOptions } from "../pages/api/auth/[...nextauth]"
 import "./globals.css"
 import Login from "@/components/Login"
+import { redirect } from "next/dist/server/api-utils"
 
 
 export const metadata = {
@@ -24,29 +25,38 @@ export default async function RootLayout({
       <body className="bg-zinc-700">
         <SessionProvider session={session}> {/*TODO: after getting sessions working go back and rework this to have guest accessible homepage before login is required*/}
           {!session ? (
-            <Login />
-          ): (
             <div>
               <div className="flex justify-between bg-zinc-800 py-4 items-center flex-wrap">
-                
+                <a href="/" className="hover:bg-zinc-900 px-4 py-4 mx-2 rounded-md text-white text-center">Home</a>
+                <div className="flex items-center justify-center p-2">
+                  <p className="text-white">Sign in to build your garage:</p>
+                  <Login />
+                </div>
+              </div>
+              <div>{children}</div>
+            </div>
+          ): ( 
+            <div>
+              <div className="flex justify-between bg-zinc-800 py-4 items-center flex-wrap">
                 <div>
                   <a href="/" className="hover:bg-zinc-900 px-4 py-4 mx-2 rounded-md text-white text-center">Home</a>
                   <a href="/mygarage" className="hover:bg-zinc-900 px-4 py-4 mx-2 rounded-md text-white text-center">My Garage</a> 
                 </div>
+                
                 <div>
-                  <a href="/login" className="bg-sky-500 px-4 py-2 mx-2 rounded-md text-sm hover:bg-sky-700 text-center">Log In</a>
-                  <a href="/signup" className="bg-sky-500 px-4 py-2 mx-2 rounded-md text-sm hover:bg-sky-700 text-center">Sign Up</a> 
+                  <Login />
                 </div>
                 
-               
+              
               </div>  
               
               <div>{children}</div>
             </div>
-          )}
+           )}  
           
         </SessionProvider>
       </body>
     </html>
   )
+  
 }

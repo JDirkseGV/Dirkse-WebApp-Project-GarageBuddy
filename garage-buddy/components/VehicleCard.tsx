@@ -21,7 +21,7 @@ export default function VehicleCard({id, year, make, model}: Properties) {
     }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col justify-between border rounded mx-2 bg-zinc-100/50">
         <Link className="m-4" href={`/mygarage/${id}`} >
         <Image className="rounded"
             src="/../public/audi.jpg"
