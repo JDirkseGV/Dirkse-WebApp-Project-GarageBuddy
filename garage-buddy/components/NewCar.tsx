@@ -19,7 +19,7 @@ export default function NewCar() {
             make: "",
             model: ""
         });
-        router.push(`/mygarage/${doc.id}`)
+        //router.push(`/mygarage/${doc.id}`)
     }
 
     return (

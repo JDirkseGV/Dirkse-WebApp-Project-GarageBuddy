@@ -22,7 +22,7 @@ export default function GaragePage() {
             <div className="flex-1">
                 <NewCar />
                 <p className="text-white px-4 text-5xl">Your Vehicles: </p> 
-                <div className="flex flex-row m-4">
+                <div className="flex flex-row flex-wrap m-4">
                     {cars?.docs?.map(car =>(
                         <VehicleCard key={car.id} id={car.id} year={car.data().year} make={car.data().make} model={car.data().model} />
                     ))}   
