@@ -1,5 +1,5 @@
-export default function AccelerationCard() {
+export default function WeightCard() {
     return (
-        <div>AccelerationCard</div>
+        <div>Weight Card</div>
     )
 }

@@ -1,6 +1,6 @@
 
 export default function AccelerationCard() {
   return (
-    <div>AccelerationCard</div>
+    <div>Acceleration Card</div>
   )
 }

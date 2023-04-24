@@ -1,4 +1,7 @@
 
+import AccelerationCard from "@/components/AccelerationCard";
+import HorsepowerCard from "@/components/HorsepowerCard";
+import WeightCard from "@/components/WeightCard";
 import { useSession } from "next-auth/react";
 import { redirect, useRouter } from "next/navigation";
 import { Router } from "next/router";
