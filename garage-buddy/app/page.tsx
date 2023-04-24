@@ -11,8 +11,7 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col h-screen w-screen">
-      <div id="modelsArea" className="border flex">
-        <p className="text-white px-4">Model area</p>
+      <div id="modelsArea" className="flex flex-wrap">
         <AccelerationCard></AccelerationCard>
         <HorsepowerCard></HorsepowerCard>
         <WeightCard></WeightCard>

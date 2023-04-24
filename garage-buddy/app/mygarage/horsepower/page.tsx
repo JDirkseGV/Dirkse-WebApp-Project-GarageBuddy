@@ -1,10 +1,10 @@
 'use client'
 
-export default function AccelerationPublic() {
+export default function HorsepowerPublic() {
 
     return (
         <div>
-            <p>Acceleration Public Model Page</p>
+            <p>Horsepower Public Model Page</p>
             <p></p>
             <p></p>
             <p></p>
