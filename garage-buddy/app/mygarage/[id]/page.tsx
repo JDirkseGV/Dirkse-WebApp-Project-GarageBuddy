@@ -4,6 +4,7 @@
 import { db } from "@/firebase";
 import { collection, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, {useEffect, useState} from "react"
 import { useCollection } from "react-firebase-hooks/firestore";
@@ -12,25 +13,18 @@ type Properties = {
     params:{
         id: string;
     }
-
 }
 
-
-
 export default function Car({params: {id}}: Properties) {
-    console.log("id: "+ id)
     const { data: session } = useSession();
     const [carData, setCarData] = useState({
         year: "",
         make: "",
         model: ""
     })
-    const [isLoading, setLoading] = useState(false)
-
 
     useEffect(() => { 
         const loadData = async () => {
-            setLoading(true)
             try{
                 const carDoc = doc(db, 'users', session?.user?.email!, 'cars', id)
                 const result = await getDoc(carDoc).then((doc) => {
@@ -40,29 +34,25 @@ export default function Car({params: {id}}: Properties) {
             }
             catch{
                 console.log("doc fetch error")
-            }
-            setLoading(false)   
+            }  
         }
         console.log("loading client side data...")
         loadData()
         
     }, []); 
     
-    
-
-
     const router = useRouter()
 
     const updateCars = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try{
-            const carReference = doc(db, "users/cars", id)
+            const carReference = doc(db, 'users', session?.user?.email!, 'cars', id)
             await updateDoc(carReference, {
                 year: carData.year,
                 make: carData.make,
                 model: carData.model
             })
-            router.push('/mygarage')
+            router.push('/mygarage') //TODO: is this push needed?
         }
         catch(error){
             console.log("error : " + error)
@@ -72,7 +62,10 @@ export default function Car({params: {id}}: Properties) {
     
 
   return (
-    <div>
+    <div className="flex flex-col">
+          <p>{carData.year}</p>
+          <p>{carData.make}</p>
+          <p>{carData.model}</p>
         <form onSubmit={updateCars}>
             <label htmlFor="year">Year:</label>
             <input type="number" id="year" value={carData.year} onChange={(e) => setCarData({...carData, year: e.target.value})}/>
@@ -82,6 +75,12 @@ export default function Car({params: {id}}: Properties) {
             <input type="text" id="model" value={carData.model} onChange={(e) => setCarData({ ...carData, model: e.target.value })} />
             <button type="submit">Update Car Info</button>
         </form>
+        <div className="p-4">
+            <Link className="m-4" href={`/mygarage/acceleration/${id}`} >Acceleration Prediction</Link>
+            <Link className="m-4" href={`/mygarage/weight/${id}`} >Weight Prediction</Link>
+            <Link className="m-4" href={`/mygarage/horsepower/${id}`} >Horsepower Prediction</Link>
+        </div>
+
 
     </div>
   )
