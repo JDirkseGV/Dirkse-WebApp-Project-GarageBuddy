@@ -11,6 +11,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, {useEffect, useState} from "react"
 import { useCollection } from "react-firebase-hooks/firestore";
+import Image from "next/image";
 
 type Properties = {
     params:{
@@ -23,7 +24,10 @@ export default function Car({params: {id}}: Properties) {
     const [carData, setCarData] = useState({
         year: "",
         make: "",
-        model: ""
+        model: "",
+        weight: "",
+        hp: "",
+        accTime: ""
     })
 
     useEffect(() => { 
@@ -32,7 +36,7 @@ export default function Car({params: {id}}: Properties) {
                 const carDoc = doc(db, 'users', session?.user?.email!, 'cars', id)
                 const result = await getDoc(carDoc).then((doc) => {
                     console.log(doc.data())
-                    setCarData({...carData, year: doc?.data()?.year, make: doc?.data()?.make, model: doc?.data()?.model}) 
+                    setCarData({...carData, year: doc?.data()?.year, make: doc?.data()?.make, model: doc?.data()?.model, weight: doc?.data()?.weight, hp: doc?.data()?.hp, accTime: doc?.data()?.accTime}) 
                 })
             }
             catch{
@@ -55,29 +59,73 @@ export default function Car({params: {id}}: Properties) {
                 make: carData.make,
                 model: carData.model
             })
-            router.push('/mygarage') //TODO: is this push needed?
         }
         catch(error){
             console.log("error : " + error)
         }
+    }
 
+    const updateSpecs = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        try {
+            const carReference = doc(db, 'users', session?.user?.email!, 'cars', id)
+            await updateDoc(carReference, {
+                weight: carData.weight,
+                hp: carData.hp,
+                accTime: carData.accTime
+            })
+        }
+        catch (error) {
+            console.log("error : " + error)
+        }
     }
     
 
   return (
     <div className="flex flex-col">
-          <p>{carData.year}</p>
-          <p>{carData.make}</p>
-          <p>{carData.model}</p>
-        <form onSubmit={updateCars}>
-            <label htmlFor="year">Year:</label>
-            <input type="number" id="year" value={carData.year} onChange={(e) => setCarData({...carData, year: e.target.value})}/>
-            <label htmlFor="make">Make:</label>
-            <input type="text" id="make" value={carData.make} onChange={(e) => setCarData({ ...carData, make: e.target.value })} />
-            <label htmlFor="model">Model:</label>
-            <input type="text" id="model" value={carData.model} onChange={(e) => setCarData({ ...carData, model: e.target.value })} />
-            <button type="submit">Update Car Info</button>
-        </form>
+        <div className="flex">
+            <div className="flex flex-col items-center p-4">
+                <Image className="rounded"
+                    src="/../public/audi.jpg"
+                    alt="Car Image"
+                    width={500}
+                    height={500}
+                />
+                <div className="flex flex-col text-3xl">
+                    <p>{carData.year} {carData.make} {carData.model}</p>
+                </div>
+                <div className="flex flex-col">
+                    <p>{carData.weight} lbs, {carData.hp} hp, {carData.accTime}sec 0-60</p>
+                </div>
+            </div>
+        <div>
+
+        </div>
+        <div className="border-zinc-400 border-2 rounded ml-32 mt-4 bg-zinc-500">
+            <form onSubmit={updateCars} className="flex flex-col p-4">
+                <label htmlFor="year" className="block text-2xl">Year:</label>
+                <input className="mb-6 rounded text-2xl p-1" type="number" id="year" value={carData.year} onChange={(e) => setCarData({...carData, year: e.target.value})}/>
+                <label htmlFor="make" className="block text-2xl">Make:</label>
+                <input className="mb-6 rounded text-2xl p-1" type="text" id="make" value={carData.make} onChange={(e) => setCarData({ ...carData, make: e.target.value })} />
+                <label htmlFor="model" className="block text-2xl">Model:</label>
+                <input className="mb-6 rounded text-2xl p-1" type="text" id="model" value={carData.model} onChange={(e) => setCarData({ ...carData, model: e.target.value })} />
+                <button type="submit" className="rounded-md text-2xl bg-sky-500 p-2 hover:bg-sky-700">Update Car Info</button>
+            </form> 
+        </div>
+        <div className="border-zinc-400 border-2 rounded ml-32 mt-4 bg-zinc-500">
+            <form onSubmit={updateSpecs} className="flex flex-col p-4">
+                <label htmlFor="weight" className="block text-2xl">Weight:</label>
+                <input className="mb-6 rounded text-2xl p-1" type="number" step="any" id="weight" value={carData.weight} onChange={(e) => setCarData({ ...carData, weight: e.target.value })} />
+                <label htmlFor="hp" className="block text-2xl">Horsepower:</label>
+                <input className="mb-6 rounded text-2xl p-1" type="number" step="any" id="hp" value={carData.hp} onChange={(e) => setCarData({ ...carData, hp: e.target.value })} />
+                <label htmlFor="accTime" className="block text-2xl">0-62mph Time:</label>
+                <input className="mb-6 rounded text-2xl p-1" type="number" step="any" id="accTime" value={carData.accTime} onChange={(e) => setCarData({ ...carData, accTime: e.target.value })} />
+                <button type="submit" className="rounded-md text-2xl bg-sky-500 p-2 hover:bg-sky-700">Update Specs</button>
+            </form>
+        </div>
+        
+    </div>
+        
         <div className="flex flex-row flex-wrap p-4">
             <AccelerationCard path={`acceleration/${id}`}></AccelerationCard>
             <HorsepowerCard path={`horsepower/${id}`}></HorsepowerCard>

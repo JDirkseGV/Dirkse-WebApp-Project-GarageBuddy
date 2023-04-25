@@ -17,7 +17,10 @@ export default function NewCar() {
             timestamp: serverTimestamp(),
             year: "",
             make: "",
-            model: ""
+            model: "",
+            weight: "",
+            hp: "",
+            accTime: ""
         });
         //router.push(`/mygarage/${doc.id}`)
     }

@@ -61,7 +61,7 @@ export default function AccelerationPublic() {
                     <input className="mb-6 rounded text-2xl p-1" type="number" min="0" step="any" id="gears" value={inputs.gears} onChange={(e) => setInputs({ ...inputs, gears: parseFloat(e.target.value) })} /> 
                 </div>
                 
-                <button className="mb-6 rounded-md text-2xl bg-sky-500 p-2" type="submit">Calculate Acceleration</button>
+                <button className="mb-6 rounded-md text-2xl bg-sky-500 p-2 hover:bg-sky-700" type="submit">Calculate Acceleration</button>
             </form>
         </div>
 

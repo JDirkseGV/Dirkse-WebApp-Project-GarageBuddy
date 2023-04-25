@@ -36,8 +36,8 @@ export default function VehicleCard({id, year, make, model}: Properties) {
                 <p>Model: {model}</p>
             </div>   
         </Link>
-          <div className="flex border-2 border-black items-center bg-red-600 rounded w-28 h-8 justify-center m-2 hover:border-white">
-            <TrashIcon className="h-6 w-6" onClick={deleteCar}></TrashIcon> 
+          <div onClick={deleteCar} className="flex border-2 border-black items-center bg-red-600 rounded w-28 h-8 justify-center m-2 hover:border-white">
+            <TrashIcon className="h-6 w-6"></TrashIcon> 
             <p>delete car</p>
         </div>
         
