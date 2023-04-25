@@ -22,7 +22,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head />
-      <body className="bg-zinc-700">
+      <body className="bg-gradient-to-r from-zinc-700 to-slate-500">
         <SessionProvider session={session}> {/*TODO: after getting sessions working go back and rework this to have guest accessible homepage before login is required*/}
           {!session ? (
             <div>

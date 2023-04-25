@@ -1,6 +1,7 @@
 'use client'
 
 import { FormEvent, useState } from "react"
+import Image from "next/image"
 
 export default function AccelerationPublic() {
 
@@ -36,7 +37,16 @@ export default function AccelerationPublic() {
 
     return (
         <div className="flex flex-col items-center mt-6">
-            <h1 className="text-5xl text-white mb-6">Acceleration Public Model Page</h1>
+            <h1 className="text-5xl text-white mb-6">Machine Learning Acceleration Predictor</h1>
+            <Image className="rounded my-4"
+                src="/../public/wheelieCar.jpg"
+                alt="Car Image"
+                width={600}
+                height={500}
+            />
+            <div className="bg-zinc-800 rounded-lg p-4 mb-12">
+                <p className="text-white text-3xl">Predicted 0-62mph: {Number((modelPrediction.prediction).toFixed(2))} seconds</p>
+            </div>
             <form className="mb-6 flex flex-col" onSubmit={getAcceleration}>
                 <div className="bg-sky-500 px-8 rounded-lg mb-4">
                     <label htmlFor="weight" className="block text-2xl py-2">Curb Weight(lbs):</label>
@@ -53,12 +63,6 @@ export default function AccelerationPublic() {
                 
                 <button className="mb-6 rounded-md text-2xl bg-sky-500 p-2" type="submit">Calculate Acceleration</button>
             </form>
-
-            <div className="bg-zinc-800 rounded-lg p-4">
-                <p className="text-white text-3xl">Predicted 0-62mph: {Number((modelPrediction.prediction).toFixed(2))} seconds</p>  
-            </div>
-            
-
         </div>
 
     )

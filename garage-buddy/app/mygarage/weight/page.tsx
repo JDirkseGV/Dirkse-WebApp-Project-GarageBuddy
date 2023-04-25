@@ -1,6 +1,7 @@
 'use client'
 
 import { FormEvent, useState } from "react"
+import Image from "next/image"
 
 export default function WeightPublic() {
 
@@ -36,7 +37,16 @@ export default function WeightPublic() {
 
   return (
     <div className="flex flex-col items-center mt-6">
-      <h1 className="text-5xl text-white mb-6">Weight Predictor Public Model Page</h1>
+      <h1 className="text-5xl text-white mb-6">Machine Learning Curb Weight Predictor</h1>
+      <Image className="rounded mb-4"
+        src="/../public/carScales.png"
+        alt="Car Image"
+        width={470}
+        height={400}
+      />
+      <div className="bg-zinc-800 rounded-lg p-4 m-4">
+        <p className="text-white text-3xl">Predicted Weight (+/- 286lbs): {Number((modelPrediction.prediction).toFixed(2))}lbs</p>
+      </div>
       <form className="mb-6 flex flex-col" onSubmit={getWeight}>
         <div className="bg-sky-500 px-8 rounded-lg mb-4">
           <label htmlFor="hp" className="block text-2xl py-2">Horsepower:</label>
@@ -53,12 +63,6 @@ export default function WeightPublic() {
 
         <button className="mb-6 rounded-md text-2xl bg-sky-500 p-2" type="submit">Calculate Weight</button>
       </form>
-
-      <div className="bg-zinc-800 rounded-lg p-4">
-        <p className="text-white text-3xl">Predicted Weight (+/- 286lbs): {Number((modelPrediction.prediction).toFixed(2))}lbs</p>
-      </div>
-
-
     </div>
 
   )
