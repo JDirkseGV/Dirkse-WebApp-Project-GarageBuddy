@@ -11,6 +11,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { redirect, useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { spawn } from "child_process";
 
 export default function GaragePage() {
 
@@ -33,7 +34,8 @@ export default function GaragePage() {
                 <NewCar />
                 <p className="text-white px-4 text-5xl">Your Vehicles: </p> 
                 <div className="flex flex-row flex-wrap m-4">
-                    {cars?.docs?.map(car =>(
+                    {loadingCollection && <span className="text-lg text-white">Collection: Loading...</span>}
+                    {cars && cars?.docs?.map(car =>(
                         <VehicleCard key={car.id} id={car.id} year={car.data().year} make={car.data().make} model={car.data().model} />
                     ))}   
                 </div>  
