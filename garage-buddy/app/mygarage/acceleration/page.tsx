@@ -40,22 +40,22 @@ export default function AccelerationPublic() {
             <form className="mb-6 flex flex-col" onSubmit={getAcceleration}>
                 <div className="bg-sky-500 px-8 rounded-lg mb-4">
                     <label htmlFor="weight" className="block text-2xl py-2">Curb Weight(lbs):</label>
-                    <input className="mb-6 rounded text-2xl p-1" type="number" min="0" id="weight" value={inputs.weight} onChange={(e) => setInputs({ ...inputs, weight: parseFloat(e.target.value) })} />   
+                    <input className="mb-6 rounded text-2xl p-1" type="number" min="0" step="any" id="weight" value={inputs.weight} onChange={(e) => setInputs({ ...inputs, weight: parseFloat(e.target.value) })} />   
                 </div>
                 <div className="bg-sky-500 px-8 rounded-lg mb-4">
                     <label htmlFor="horsepower" className="block text-2xl py-2">Horsepower:</label>
-                    <input className="mb-6 rounded text-2xl p-1" type="number" min="0" id="horsepower" value={inputs.hp} onChange={(e) => setInputs({ ...inputs, hp: parseFloat(e.target.value) })} />  
+                    <input className="mb-6 rounded text-2xl p-1" type="number" min="0" step="any" id="horsepower" value={inputs.hp} onChange={(e) => setInputs({ ...inputs, hp: parseFloat(e.target.value) })} />  
                 </div>
                 <div className="bg-sky-500 px-8 rounded-lg mb-4">
                     <label htmlFor="gears" className="block text-2xl py-2">Number of Gears:</label>
-                    <input className="mb-6 rounded text-2xl p-1" type="number" min="0" id="gears" value={inputs.gears} onChange={(e) => setInputs({ ...inputs, gears: parseFloat(e.target.value) })} /> 
+                    <input className="mb-6 rounded text-2xl p-1" type="number" min="0" step="any" id="gears" value={inputs.gears} onChange={(e) => setInputs({ ...inputs, gears: parseFloat(e.target.value) })} /> 
                 </div>
                 
                 <button className="mb-6 rounded-md text-2xl bg-sky-500 p-2" type="submit">Calculate Acceleration</button>
             </form>
 
             <div className="bg-zinc-800 rounded-lg p-4">
-                <p className="text-white text-3xl">Predicted 0-62mph: {Number((modelPrediction.prediction).toFixed(2))}</p>  
+                <p className="text-white text-3xl">Predicted 0-62mph: {Number((modelPrediction.prediction).toFixed(2))} seconds</p>  
             </div>
             
 
