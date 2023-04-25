@@ -25,7 +25,7 @@ export default function AccelerationPublic() {
                 body: JSON.stringify(inputs)
             })
             const accelerationPrediction = await response.json()
-            setPrediction({...modelPrediction, prediction:accelerationPrediction})
+            setPrediction({...modelPrediction, prediction:accelerationPrediction.prediction})
         }
         catch (error) {
             console.log("error : " + error)
@@ -45,6 +45,8 @@ export default function AccelerationPublic() {
                 <input type="number" min="0" id="gears" value={inputs.gears} onChange={(e) => setInputs({ ...inputs, gears: parseFloat(e.target.value) })} />
                 <button type="submit">Update Car Info</button>
             </form>
+
+            <p className="text-white">Predicted Acceleration: {modelPrediction.prediction}</p>
 
         </div>
 
