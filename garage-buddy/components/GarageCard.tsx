@@ -3,7 +3,7 @@ import { signIn, signOut, useSession } from "next-auth/react"
 import Link from "next/link"
 import Image from "next/image"
 
-export default function Login() {
+export default function GarageCard() {
     const { data: session } = useSession()
     if (session) {
         return (
