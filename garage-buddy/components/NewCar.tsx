@@ -20,7 +20,8 @@ export default function NewCar() {
             model: "",
             weight: "",
             hp: "",
-            accTime: ""
+            accTime: "",
+            gears: ""
         });
         //router.push(`/mygarage/${doc.id}`)
     }

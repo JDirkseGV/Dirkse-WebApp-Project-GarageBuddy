@@ -45,7 +45,7 @@ export default function AccelerationPublic() {
                 height={500}
             />
             <div className="bg-zinc-800 rounded-lg p-4 mb-12">
-                <p className="text-white text-3xl">Predicted 0-62mph: {Number((modelPrediction.prediction).toFixed(2))} seconds</p>
+                <p className="text-white text-3xl">Predicted 0-62mph(+/- .8sec)): {Number((modelPrediction.prediction).toFixed(2))} seconds</p>
             </div>
             <form className="mb-6 flex flex-col" onSubmit={getAcceleration}>
                 <div className="bg-sky-500 px-8 rounded-lg mb-4">
@@ -60,7 +60,6 @@ export default function AccelerationPublic() {
                     <label htmlFor="gears" className="block text-2xl py-2">Number of Gears:</label>
                     <input className="mb-6 rounded text-2xl p-1" type="number" min="0" step="any" id="gears" value={inputs.gears} onChange={(e) => setInputs({ ...inputs, gears: parseFloat(e.target.value) })} /> 
                 </div>
-                
                 <button className="mb-6 rounded-md text-2xl bg-sky-500 p-2 hover:bg-sky-700" type="submit">Calculate Acceleration</button>
             </form>
         </div>
