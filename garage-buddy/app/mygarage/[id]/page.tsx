@@ -5,12 +5,10 @@ import AccelerationCard from "@/components/AccelerationCard";
 import HorsepowerCard from "@/components/HorsepowerCard";
 import WeightCard from "@/components/WeightCard";
 import { db } from "@/firebase";
-import { collection, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { useSession } from "next-auth/react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, {useEffect, useState} from "react"
-import { useCollection } from "react-firebase-hooks/firestore";
 import Image from "next/image";
 
 type Properties = {

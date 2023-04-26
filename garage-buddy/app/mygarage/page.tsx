@@ -25,7 +25,6 @@ export default function GaragePage() {
     const [cars, loadingCollection, error] = useCollection(
         session && collection(db,"users", session.user?.email!, "cars")
     )
-    console.log(cars)
 
     return (
         <div className="flex">
