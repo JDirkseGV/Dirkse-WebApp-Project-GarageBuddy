@@ -11,8 +11,8 @@ import { useEffect } from "react";
 export default function HomePage() {
 
   return (
-    <div className="flex h-screen w-screen">
-      <div id="carContent" className="flex flex-wrap justify-center h-1/2">
+    <div className="flex flex-col h-screen w-screen">
+      <div id="carContent" className="flex flex-wrap justify-center ">
         <GarageCard></GarageCard>
       </div>
       <div id="modelsArea" className="flex flex-wrap justify-center">
