@@ -5,6 +5,8 @@ import { addDoc, collection, doc, getDoc, serverTimestamp } from "firebase/fires
 import { useSession } from "next-auth/react";
 import { FormEvent, useEffect, useState } from "react";
 import Image from "next/image";
+import { useCollection } from "react-firebase-hooks/firestore";
+import AccHistory from "@/components/AccHistory";
 
 type Properties = {
   params: {
@@ -13,7 +15,6 @@ type Properties = {
 }
 
 export default function Acceleration({ params: { id } }: Properties) {
-  console.log("id", id)
   const { data: session } = useSession();
   const [carData, setCarData] = useState({
     year: "",
@@ -33,6 +34,10 @@ export default function Acceleration({ params: { id } }: Properties) {
     prediction: 0
   })
 
+  const [history, loadingHistory, error] = useCollection(
+    session && collection(db, "users", session.user?.email!, "cars", id, "acceleration predictions")
+  )
+
   const loadData = async () => {
     try {
       if (session) {
@@ -47,7 +52,7 @@ export default function Acceleration({ params: { id } }: Properties) {
     }
   }
 
-  const createAccelEntry = async (pred: any) => {
+  const createAccelEntry = async (pred: number) => {
     const doc = await addDoc(collection(db, 'users', session?.user?.email!, 'cars', id, 'acceleration predictions'), {
       weight: inputs.weight,
       hp: inputs.hp,
@@ -74,7 +79,7 @@ export default function Acceleration({ params: { id } }: Properties) {
       })
       const accelerationPrediction = await response.json()
       setPrediction({ ...modelPrediction, prediction: accelerationPrediction.prediction })
-      createAccelEntry(accelerationPrediction.prediction)
+      createAccelEntry(Number((accelerationPrediction.prediction).toFixed(2)))
       // create card from inputs and prediction value
     }
     catch (error) {
@@ -86,8 +91,8 @@ export default function Acceleration({ params: { id } }: Properties) {
 
 
   return (
-    <div className="flex flex-row justify-between">
-      <div>
+    <div className="flex flex-row justify-evenly">
+      <div className="">
         <div className="flex flex-col items-center p-4">
           <Image className="rounded"
             src="/../public/audi.jpg"
@@ -127,17 +132,13 @@ export default function Acceleration({ params: { id } }: Properties) {
         </form>
       </div>
       
-      <p>Acceleration Model Page</p>
-      <p>{carData.year}</p>
-      <p>{carData.make}</p>
-      <p>{carData.model}</p>
-
-
-      <div>
-
+      <div className="flex flex-col m-2 items-center">
+        <p className="text-xl text-white">{carData.make} {carData.model} Prediction History</p>
+        {loadingHistory && <span className="text-lg text-white">Collection: Loading...</span>}
+        {history && history?.docs?.map(card => (
+          <AccHistory key={card.id} id={card.id} carId={id} weight={card.data().weight} hp={card.data().hp} gears={card.data().gears} prediction={card.data().prediction} />
+        ))} 
       </div>
-
-
     </div>
 
   )
