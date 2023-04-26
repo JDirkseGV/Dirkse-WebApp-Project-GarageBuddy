@@ -39,7 +39,7 @@ export default function AccelerationPublic() {
         <div className="flex flex-col items-center mt-6">
             <h1 className="text-5xl text-white mb-6">Machine Learning Acceleration Predictor</h1>
             <Image className="rounded my-4"
-                src="/public/wheelieCar.jpg"
+                src="/static/img/wheelieCar.jpg"
                 alt="Car Image"
                 width={600}
                 height={500}

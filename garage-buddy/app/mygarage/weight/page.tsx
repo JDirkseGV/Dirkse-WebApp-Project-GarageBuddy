@@ -39,7 +39,7 @@ export default function WeightPublic() {
     <div className="flex flex-col items-center mt-6">
       <h1 className="text-5xl text-white mb-6">Machine Learning Curb Weight Predictor</h1>
       <Image className="rounded mb-4"
-        src="/public/carScales.png"
+        src="/static/img/carScales.png"
         alt="Car Image"
         width={470}
         height={400}

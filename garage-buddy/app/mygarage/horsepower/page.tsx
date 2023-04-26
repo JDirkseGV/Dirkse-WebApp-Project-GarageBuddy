@@ -39,7 +39,7 @@ export default function HorsepowerPublic() {
         <div className="flex flex-col items-center mt-6">
             <h1 className="text-5xl text-white mb-6">Machine Learning Horsepower Predictor</h1>
             <Image className="rounded mb-4"
-                src="/public/dynoGraph.jpg"
+                src="/static/img/dynoGraph.jpg"
                 alt="Car Image"
                 width={400}
                 height={400}
