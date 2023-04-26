@@ -8,7 +8,7 @@ export default function Login() {
     if (session) {
         return (
             <Link className="m-4 border-zinc-800 border-4 rounded flex flex-col items-center justify-between bg-zinc-400 hover:bg-zinc-100 hover:border-zinc-500" href={`/mygarage`} >
-                <Image className="rounded"
+                <Image className="ronded"
                     src="/../public/garage.jpeg"
                     alt="Car Image"
                     width={800}
@@ -24,7 +24,7 @@ export default function Login() {
     }
     return (
         <div onClick={() => signIn()} className="m-4 border-zinc-800 border-4 rounded flex flex-col items-center justify-between bg-zinc-400 hover:bg-zinc-100 hover:border-zinc-500 hover:cursor-pointer" >
-                <Image className="rounded"
+                <Image className=""
                     src="/../public/garage.jpeg"
                     alt="Car Image"
                     width={800}

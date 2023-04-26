@@ -8,7 +8,7 @@ type Properties = {
 export default function HorsepowerCard({ path }: Properties) {
     return (
         <Link className="mx-12 my-4 border-zinc-800 border-4 rounded w-96 flex flex-col items-center justify-between bg-zinc-400 hover:bg-zinc-100 hover:border-zinc-500" href={`/mygarage/${path}`} >
-            <Image className="rounded"
+            <Image className=""
                 src="/../public/dynoGraph.jpg"
                 alt="Car Image"
                 width={400}
