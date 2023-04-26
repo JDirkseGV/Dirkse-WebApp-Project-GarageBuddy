@@ -1,7 +1,7 @@
 'use client'
 
 import { db } from "@/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, serverTimestamp } from "firebase/firestore";
 import { useSession } from "next-auth/react";
 import { FormEvent, useEffect, useState } from "react";
 import Image from "next/image";
@@ -47,6 +47,15 @@ export default function Acceleration({ params: { id } }: Properties) {
     }
   }
 
+  const createAccelEntry = async (pred: any) => {
+    const doc = await addDoc(collection(db, 'users', session?.user?.email!, 'cars', id, 'acceleration predictions'), {
+      weight: inputs.weight,
+      hp: inputs.hp,
+      gears: inputs.gears,
+      prediction: pred
+    });
+  }
+
   useEffect(() => { 
         console.log("loading client side data...")
         loadData()
@@ -65,6 +74,8 @@ export default function Acceleration({ params: { id } }: Properties) {
       })
       const accelerationPrediction = await response.json()
       setPrediction({ ...modelPrediction, prediction: accelerationPrediction.prediction })
+      createAccelEntry(accelerationPrediction.prediction)
+      // create card from inputs and prediction value
     }
     catch (error) {
       console.log("error : " + error)

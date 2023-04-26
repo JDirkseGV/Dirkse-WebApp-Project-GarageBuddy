@@ -23,7 +23,6 @@ export default function NewCar() {
             accTime: "",
             gears: ""
         });
-        //router.push(`/mygarage/${doc.id}`)
     }
 
     return (
