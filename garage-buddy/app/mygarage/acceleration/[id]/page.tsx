@@ -70,7 +70,7 @@ export default function Acceleration({ params: { id } }: Properties) {
     e.preventDefault()
     try {
 
-      const response = await fetch('http://localhost:8000/acceleration', {
+      const response = await fetch('https://immense-castle-82294.herokuapp.com/acceleration', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

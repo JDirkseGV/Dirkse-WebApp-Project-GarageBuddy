@@ -19,7 +19,7 @@ export default function HorsepowerPublic() {
         e.preventDefault()
         try {
 
-            const response = await fetch('http://localhost:8000/hp', {
+            const response = await fetch('https://immense-castle-82294.herokuapp.com/hp', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

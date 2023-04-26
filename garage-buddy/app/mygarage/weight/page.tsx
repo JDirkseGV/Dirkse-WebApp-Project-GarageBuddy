@@ -19,7 +19,7 @@ export default function WeightPublic() {
     e.preventDefault()
     try {
 
-      const response = await fetch('http://localhost:8000/weight', {
+      const response = await fetch('https://immense-castle-82294.herokuapp.com/weight', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
