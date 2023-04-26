@@ -95,7 +95,7 @@ export default function Acceleration({ params: { id } }: Properties) {
       <div className="">
         <div className="flex flex-col items-center p-4">
           <Image className="rounded"
-            src="/../public/audi.jpg"
+            src="/public/audi.jpg"
             alt="Car Image"
             width={500}
             height={500}
