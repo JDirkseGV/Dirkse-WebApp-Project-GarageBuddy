@@ -9,7 +9,7 @@ export default function GarageCard() {
         return (
             <Link className="m-4 border-zinc-800 border-4 rounded flex flex-col items-center justify-between bg-zinc-400 hover:bg-zinc-100 hover:border-zinc-500" href={`/mygarage`} >
                 <Image className="ronded"
-                    src="/../public/garage.jpeg"
+                    src={"/static/img/garage.jpeg"}
                     alt="Car Image"
                     width={800}
                     height={800}
@@ -25,7 +25,7 @@ export default function GarageCard() {
     return (
         <div onClick={() => signIn()} className="m-4 border-zinc-800 border-4 rounded flex flex-col items-center justify-between bg-zinc-400 hover:bg-zinc-100 hover:border-zinc-500 hover:cursor-pointer" >
                 <Image className=""
-                    src="/../public/garage.jpeg"
+                    src={"/static/img/garage.jpeg"}
                     alt="Car Image"
                     width={800}
                     height={800}
